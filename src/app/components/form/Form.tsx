@@ -2,9 +2,9 @@
 import React, {useState} from 'react';
 import styles from './form.module.css';
 const Form: React.FC = () => {
-    const [author, setName] = useState<string>('');
-    const [word, setEmail] = useState<string>('');
-    const [description, setMessage] = useState<string>('');
+    const [author, setAuthor] = useState<string>('');
+    const [word, setWord] = useState<string>('');
+    const [description, setDescription] = useState<string>('');
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
@@ -21,20 +21,20 @@ const Form: React.FC = () => {
                 className={styles.inputField}
                 placeholder="Автор"
                 value={author}
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => setAuthor(e.target.value)}
             />
             <input
-                type="email"
+                type="text"
                 className={styles.inputField}
                 placeholder="Слово"
                 value={word}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setWord(e.target.value)}
             />
             <textarea
                 className={styles.inputField}
                 placeholder="Значение"
                 value={description}
-                onChange={(e) => setMessage(e.target.value)}
+                onChange={(e) => setDescription(e.target.value)}
             />
             <button type="submit" className={styles.submitButton}>
                 Отправить
