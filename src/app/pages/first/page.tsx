@@ -1,10 +1,9 @@
 import React from 'react';
+import Form from "@/app/components/form/Form";
 
 const Page = () => {
     return (
-        <div>
-            FIRST PAGE
-        </div>
+        <Form />
     );
 };
 
