@@ -1,17 +1,31 @@
 'use client'
 import React, {useState} from 'react';
+import axios from 'axios';
 import styles from './form.module.css';
+
 const Form: React.FC = () => {
     const [author, setAuthor] = useState<string>('');
     const [word, setWord] = useState<string>('');
     const [description, setDescription] = useState<string>('');
+    const [responseMessage, setResponseMessage] = useState<string>('');
 
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        console.log('Автор:', author);
-        console.log('Слово:', word);
-        console.log('Значение:', description);
-        // Здесь можно добавить логику отправки данных на сервер
+
+        try {
+            const response = await axios.post('http://localhost:5000/api/form/submit', {
+                author,
+                word,
+                description
+            });
+            setResponseMessage(response.data);
+            setAuthor('');
+            setWord('');
+            setDescription('');
+        } catch (error) {
+            setResponseMessage('Ошибка при отправке данных.');
+            console.error('Ошибка:', error);
+        }
     };
 
     return (
@@ -39,6 +53,7 @@ const Form: React.FC = () => {
             <button type="submit" className={styles.submitButton}>
                 Отправить
             </button>
+            {responseMessage && <p>{responseMessage}</p>}
         </form>
     );
 };
