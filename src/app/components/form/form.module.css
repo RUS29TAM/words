@@ -1,9 +1,11 @@
 .formContainer {
     display: flex;
     flex-direction: column;
+    height: 100vh;
     gap: 15px;
     width: 300px;
     margin: 0 auto;
+    padding: 5px;
 }
 
 .inputField {
@@ -14,12 +16,59 @@
 }
 
 .submitButton {
+    position: relative;
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #343434;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.submitButton::after, .submitButton::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    border-radius: 5px;
+    translate: -50% -50%;
+    padding: 5px;
+    margin: 0 auto;
+    animation: 3s spin linear infinite;
+}
+
+.submitButton::before {
+    /*filter: blur(1.5rem);*/
+    opacity: 0.5;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+/*.submitButton::after, .submitButton::before {*/
+/*    !*--angle: 0deg;*!*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*    background-image: conic-gradient(from var(--angle), transparent, #00ff99);*/
+/*    animation: 3s spin linear infinite;*/
+/*}*/
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+
+    }
 }
 
 .submitButton:hover {
